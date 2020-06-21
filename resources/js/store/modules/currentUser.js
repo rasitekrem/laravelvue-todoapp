@@ -4,7 +4,11 @@ const state = {
     user: {}
 };
 
-const getters = {};
+const getters = {
+    getUser(state) {
+        return state.user;
+    }
+};
 const actions = {
     getUser ({ commit }) {
         axios.get("/api/v1/user/current")
@@ -25,7 +29,7 @@ const actions = {
                     response.data.access_token
                 );
 
-                window.location.replace("/app");
+                window.location.replace("/");
             }
         })
     },

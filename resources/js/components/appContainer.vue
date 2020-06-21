@@ -1,91 +1,58 @@
 <template>
   <v-app id="inspire">
-    <v-navigation-drawer
-      v-model="drawer"
-      app
+    <v-bottom-navigation
+      v-model="activeBtn"
+      color="primary"
+      horizontal
     >
-      <v-list dense>
-        <v-list-item link to="/todolist">
-          <v-list-item-action>
-            <v-icon>mdi-calendar-clock</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>Yapılacaklar Listesi</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-        <v-list-item link to="/madelist">
-          <v-list-item-action>
-            <v-icon>mdi-calendar-multiple-check</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title >Yapılmış Olanlar</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-        <v-list-item link @click="logout">
-          <v-list-item-action>
-            <v-icon>mdi-power</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>Çıkış</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
+      <v-btn to="/todolist"> 
+        <span>Yapılacaklar</span>
+        <v-icon>mdi-calendar-clock</v-icon>
+      </v-btn>
 
-    <v-app-bar
-      app
-      color="indigo"
-      dark
-    >
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title>Application {{ loggedIn }}</v-toolbar-title>
-    </v-app-bar>
+      <v-btn to="/madelist">
+        <span>Yapılanlar</span>
+        <v-icon>mdi-calendar-multiple-check</v-icon>
+      </v-btn>
+
+      <v-btn @click="logout">
+        <span>Çıkış</span>
+        <v-icon>mdi-power</v-icon>
+      </v-btn>
+    </v-bottom-navigation>
 
     <v-main>
       <v-container
-        class="fill-height"
-        fluid
       >
       <router-view></router-view>
       </v-container>
     </v-main>
-    <v-footer
-      color="indigo"
-      app
-    >
-      <span class="white--text">&copy; 2019</span>
-    </v-footer>
   </v-app>
 </template>
 
 <script>
+  import { mapGetters, mapActions } from 'vuex';
   export default {
     props: {
       source: String,
     },
     data: () => ({
-      drawer: null,
+      activeBtn: 0,
     }),
     computed: {
-      loggedIn: {
-        get() {
-          return this.$store.state.currentUser.loggedIn;
-        }
-      },
-      currentUser: {
-        get() {
-          return this.$store.state.currentUser.user;
-        }
-      }
+      ...mapGetters({
+        currentUser: 'currentUser/getUser'
+      })
     },
     methods: {
-        logout() {
-            this.$store.dispatch('currentUser/logoutUser');
-        }
+      ...mapActions({
+        logout: 'currentUser/logoutUser'
+      })
     },
     created() {
         axios.defaults.headers.common["Authorization"] = "Bearer " + localStorage.getItem("todoapp_token");
         this.$store.dispatch('currentUser/getUser');
+        this.$route.path != '/todolist' ? this.$router.push('/todolist'): null;
     },
   }
 </script>
