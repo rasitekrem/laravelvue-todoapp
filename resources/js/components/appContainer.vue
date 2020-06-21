@@ -5,20 +5,20 @@
       app
     >
       <v-list dense>
-        <v-list-item link>
+        <v-list-item link to="/todolist">
           <v-list-item-action>
-            <v-icon>mdi-home</v-icon>
+            <v-icon>mdi-calendar-clock</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>Home</v-list-item-title>
+            <v-list-item-title>Yapılacaklar Listesi</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item link>
+        <v-list-item link to="/madelist">
           <v-list-item-action>
-            <v-icon>mdi-email</v-icon>
+            <v-icon>mdi-calendar-multiple-check</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>Contact</v-list-item-title>
+            <v-list-item-title >Yapılmış Olanlar</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <v-list-item link @click="logout">
@@ -38,7 +38,7 @@
       dark
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title>Application</v-toolbar-title>
+      <v-toolbar-title>Application {{ loggedIn }}</v-toolbar-title>
     </v-app-bar>
 
     <v-main>
@@ -46,27 +46,7 @@
         class="fill-height"
         fluid
       >
-        <v-row
-          align="center"
-          justify="center"
-        >
-          <v-col class="text-center">
-            <v-tooltip left>
-              <template v-slot:activator="{ on }">
-                <v-btn
-                  :href="source"
-                  icon
-                  large
-                  target="_blank"
-                  v-on="on"
-                >
-                  <v-icon large>mdi-code-tags</v-icon>
-                </v-btn>
-              </template>
-              <span>Source</span>
-            </v-tooltip>
-          </v-col>
-        </v-row>
+      <router-view></router-view>
       </v-container>
     </v-main>
     <v-footer
@@ -100,15 +80,12 @@
     },
     methods: {
         logout() {
-            axios.post('/logout')
-            .then( response => {
-                window.location.href = "login";
-            });
+            this.$store.dispatch('currentUser/logoutUser');
         }
     },
     created() {
-      axios.defaults.headers.common["Authorization"] = "Bearer " + localStorage.getItem("todoapp_token");
-      this.$store.dispatch('currentUser/getUser');
+        axios.defaults.headers.common["Authorization"] = "Bearer " + localStorage.getItem("todoapp_token");
+        this.$store.dispatch('currentUser/getUser');
     },
   }
 </script>
