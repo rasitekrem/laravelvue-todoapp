@@ -1,15 +1,58 @@
 <template>
-    <div>
-        <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" v-model="user.email" id="exampleInputEmail1" aria-describedby="emailHelp">
-        </div>
-        <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" v-model="user.password" id="exampleInputPassword1">
-        </div>
-        <button type="submit" @click="login" class="btn btn-primary">Submit</button>
-    </div>
+  <v-app id="inspire">
+    <v-main>
+      <v-container
+        class="fill-height"
+        fluid
+      >
+        <v-row
+          align="center"
+          justify="center"
+        >
+          <v-col
+            cols="12"
+            sm="6"
+            md="4"
+          >
+            <v-card class="elevation-12">
+              <v-toolbar
+                color="primary"
+                dark
+                flat
+              >
+                <v-toolbar-title>Giriş Formu</v-toolbar-title>
+                <v-spacer></v-spacer>
+              </v-toolbar>
+              <v-card-text>
+                <v-form>
+                  <v-text-field
+                    label="Mail Adresi"
+                    name="email"
+                    v-model="user.email"
+                    prepend-icon="mdi-account"
+                    type="text"
+                  ></v-text-field>
+
+                  <v-text-field
+                    id="password"
+                    label="Parola"
+                    v-model="user.password"
+                    name="password"
+                    prepend-icon="mdi-lock"
+                    type="password"
+                  ></v-text-field>
+                </v-form>
+              </v-card-text>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn @click="login" color="primary">Giriş Yap</v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-main>
+</v-app>
 </template>
 <script>
 export default {
@@ -19,10 +62,10 @@ export default {
             password: ""
         },
     }),
-    methods: {
-        login() {
-            this.$store.dispatch('currentUser/loginUser', this.user );
-        }
-    },
+        methods: {
+            login() {
+                this.$store.dispatch('currentUser/loginUser', this.user );
+            }
+        },
 }
 </script>
