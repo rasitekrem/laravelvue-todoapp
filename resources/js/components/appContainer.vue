@@ -86,6 +86,18 @@
     data: () => ({
       drawer: null,
     }),
+    computed: {
+      loggedIn: {
+        get() {
+          return this.$store.state.currentUser.loggedIn;
+        }
+      },
+      currentUser: {
+        get() {
+          return this.$store.state.currentUser.user;
+        }
+      }
+    },
     methods: {
         logout() {
             axios.post('/logout')
@@ -93,6 +105,10 @@
                 window.location.href = "login";
             });
         }
-    }
+    },
+    created() {
+      axios.defaults.headers.common["Authorization"] = "Bearer " + localStorage.getItem("todoapp_token");
+      this.$store.dispatch('currentUser/getUser');
+    },
   }
 </script>
