@@ -1,19 +1,19 @@
 import axios from "axios";
 
 const state = {
-    user: {}
+    tasks: {}
 };
 
 const getters = {
-    getUser(state) {
-        return state.user;
+    getTasks(state) {
+        return state.tasks;
     }
 };
 const actions = {
-    getUser ({ commit }) {
-        axios.get("/api/user/current")
+    getTasks ({ commit }) {
+        axios.get("/api/user/tasks")
         .then( response => {
-            commit('setUser', response.data );
+            commit('setTasks', response.data );
         });
     },
     loginUser( {}, user ) {
@@ -40,8 +40,9 @@ const actions = {
     }
 };
 const mutations = {
-    setUser( state, data ) {
-        state.user = data;
+    setTasks( state, data ) {
+        state.tasks = data;
+        console.log(data);
     }
 };
 

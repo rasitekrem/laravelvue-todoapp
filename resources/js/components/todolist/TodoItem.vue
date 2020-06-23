@@ -1,48 +1,22 @@
 <template>
-  <v-data-table
-    :headers="headers"
-    :items="desserts"
-    :items-per-page="5"
-    class="elevation-1"
-  ></v-data-table>
+    <v-list-item>
+      <v-list-item-content>
+        <v-list-item-title v-if="isEditable">{{ task.title }}</v-list-item-title>
+        <v-text-field
+          v-else
+          v-model="task.title"
+          required
+        ></v-text-field>
+      </v-list-item-content>
+    </v-list-item>
 </template>
 
 <script>
   export default {
+    props: ['task'],
     data () {
       return {
-        headers: [
-          {
-            text: 'Başlık',
-            align: 'start',
-            sortable: false,
-            value: 'title',
-          },
-          { text: 'Tarih', value: 'date' },
-          { text: 'Durum', value: 'status' },
-        ],
-        desserts: [
-          {
-            title: 'Kitap Okuma ',
-            date: new Date(),
-            status: 24
-          },
-          {
-            title: 'Ice cream sandwich',
-            date: 9.0,
-            status: 37
-          },
-          {
-            title: 'Eclair',
-            date: 16.0,
-            status: 23
-          },
-          {
-            title: 'Cupcake',
-            date: 3.7,
-            status: 67
-          },
-        ],
+        isEditable: false
       }
     },
   }

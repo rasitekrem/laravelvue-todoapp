@@ -62,10 +62,10 @@ export default {
             password: ""
         },
     }),
-        methods: {
-            login() {
-                this.$store.dispatch('currentUser/loginUser', this.user );
-            }
-        },
+    methods: {
+        login() {
+            this.$store.dispatch('currentUser/loginUser', this.user );
+        }
+    },
 }
 </script>

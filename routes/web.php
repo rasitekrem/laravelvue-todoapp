@@ -14,3 +14,5 @@
 Auth::routes();
 
 Route::get('/', 'AppController@index')->name('app');
+Route::get('/todolist', 'AppController@index')->name('app');
+Route::get('/madelist', 'AppController@index')->name('app');
