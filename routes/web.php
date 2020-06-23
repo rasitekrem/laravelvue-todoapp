@@ -11,10 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
-Route::get('/app', 'AppController@index')->name('app');
+Route::get('/', 'AppController@index')->name('app');

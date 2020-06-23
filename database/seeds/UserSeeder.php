@@ -18,6 +18,7 @@ class UserSeeder extends Seeder
             'name' => 'Demo',
             'email' =>'demo@mail.com',
             'password' => Hash::make('demo123'),
+            'remember_token' => Str::random(10)
         ]);
     }
 }

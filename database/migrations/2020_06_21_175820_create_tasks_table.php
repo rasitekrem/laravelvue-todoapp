@@ -16,11 +16,11 @@ class CreateTasksTable extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
-            $table->enum('is_done', ['0', '1'])->default('0');
+            $table->boolean('completed')->default(false);
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
-            $table->enum('is_deleted', ['0', '1'])->default('0');
+            $table->boolean('is_deleted')->default(false);
         });
     }
 
