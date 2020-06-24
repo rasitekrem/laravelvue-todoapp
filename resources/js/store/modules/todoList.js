@@ -20,10 +20,6 @@ const getters = {
         }
         return state.tasks
     },
-    getRoute (state)
-    {
-        return state.path;
-    },
     getFilter (state) 
     {
         return state.filter;
@@ -82,10 +78,6 @@ const mutations = {
     },
     setTasks( state, data ) {
         state.tasks = data;
-    },
-    setRoute (state,path)
-    {
-        state.path = path;
     },
     setTask( state, task )
     {

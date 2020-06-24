@@ -100548,9 +100548,6 @@ var getters = {
 
     return state.tasks;
   },
-  getRoute: function getRoute(state) {
-    return state.path;
-  },
   getFilter: function getFilter(state) {
     return state.filter;
   }
@@ -100614,9 +100611,6 @@ var mutations = {
   },
   setTasks: function setTasks(state, data) {
     state.tasks = data;
-  },
-  setRoute: function setRoute(state, path) {
-    state.path = path;
   },
   setTask: function setTask(state, task) {
     state.tasks.push(task);
