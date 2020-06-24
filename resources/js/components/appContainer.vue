@@ -5,12 +5,16 @@
       color="primary"
       horizontal
     >
-      <v-btn to="/todolist"> 
+      <v-btn to="/all" @click="updateFilter('all')"> 
+        <span>Tümü</span>
+        <v-icon>mdi-calendar-clock</v-icon>
+      </v-btn>
+      <v-btn to="/active" @click="updateFilter('active')"> 
         <span>Yapılacaklar</span>
         <v-icon>mdi-calendar-clock</v-icon>
       </v-btn>
 
-      <v-btn to="/madelist">
+      <v-btn to="/completed" @click="updateFilter('completed')">
         <span>Yapılanlar</span>
         <v-icon>mdi-calendar-multiple-check</v-icon>
       </v-btn>
@@ -46,13 +50,13 @@
     },
     methods: {
       ...mapActions({
-        logout: 'currentUser/logoutUser'
+        logout: 'currentUser/logoutUser',
+        updateFilter: 'todoList/updateFilter'
       })
     },
     created() {
         axios.defaults.headers.common["Authorization"] = "Bearer " + localStorage.getItem("todoapp_token");
         this.$store.dispatch('currentUser/getUser');
-        this.$route.path != '/todolist' ? this.$router.push('/todolist'): null;
     },
   }
 </script>

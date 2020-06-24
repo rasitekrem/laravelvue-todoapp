@@ -2,14 +2,19 @@
   <v-app id="inspire">
     <v-main>
       <v-container>
-        <v-row align="start" justify="center">
-          <v-col cols="12" sm="8" md="8">
-            <v-text-field label="Yapılacak İş"></v-text-field>
+        <v-row align="center" justify="center">
+          <v-col cols="12" sm="7" md="7">
+            <v-text-field 
+              v-model="title"
+              @keyup.enter="setTask"
+              label="Yapılacak İş"
+            />
+            
           </v-col>
-          <v-col cols="12" sm="8" md="8">
+          <v-col cols="12" sm="7" md="7">
             <v-card class="elevation-12">
               <v-card-text>
-                <todo-item :task="task" v-for="task in tasks" :key="task.id" />
+                <todo-list :tasks="tasks" />
               </v-card-text>
             </v-card>
           </v-col>
@@ -20,20 +25,33 @@
 </template>
 
 <script>
-import TodoItem from "./TodoItem";
-import { mapGetters, mapActions } from 'vuex';
+import TodoList from "./TodoList";
+import { mapGetters, mapActions, mapMutations } from 'vuex';
 export default {
   components: {
-    TodoItem
+    TodoList
   },
   computed: {
       ...mapGetters({
-        tasks: 'todoList/getTasks'
-      })
+        tasks: 'todoList/getTasks',
+        getTitle: 'todoList/getTitle'
+      }),
+      title: {
+        get () {
+          return this.getTitle;
+        },
+        set (text) {
+          this.setTitle(text);
+        }
+      }
   },
   methods: {
       ...mapActions({
-        getTasks: 'todoList/getTasks'
+        getTasks: 'todoList/getTasks',
+        setTask: 'todoList/setTask'
+      }),
+      ...mapMutations({
+        setTitle: 'todoList/setTitle'
       })
   },
   created() {

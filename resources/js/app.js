@@ -13,6 +13,14 @@ import Vuetify from '../plugins/vuetify';
 import store from "./store";
 
 import router from './router';
+
+router.beforeEach((to, from, next) => {
+    if (['all', 'active', 'completed'].some(record => record === to.params.filter)) {
+      next()
+    } else {
+      next('/all')
+    }
+})
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
