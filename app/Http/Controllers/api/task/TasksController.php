@@ -39,7 +39,7 @@ class TasksController extends Controller
             'title' => 'required|string',
         ]);
         $status = $this->taskRepository->store($request->title);
-        return $status;
+        return response($status,200);
     }
 
     /**
@@ -52,7 +52,7 @@ class TasksController extends Controller
     public function update(Request $request, Task $task)
     {
         if ($task->user_id !== Auth::user()->id) {
-            return response()->json('Unauthorized', 401);
+            return response('Unauthorized', 401);
         }
 
         $data = $request->validate([
@@ -83,12 +83,12 @@ class TasksController extends Controller
     public function destroy(Task $task)
     {
         if ($task->user_id !== Auth::user()->id) {
-            return response()->json('Unauthorized', 401);
+            return response('Unauthorized', 401);
         }
 
         $response = $this->taskRepository->destroy($task);
 
-        return response()->json('Deleted task item', 200);
+        return response('Deleted task item', 200);
     }
     
     /**
