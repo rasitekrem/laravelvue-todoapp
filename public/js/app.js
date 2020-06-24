@@ -99781,7 +99781,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 
 _router__WEBPACK_IMPORTED_MODULE_2__["default"].beforeEach(function (to, from, next) {
-  if (['all', 'active', 'completed'].some(function (record) {
+  if (['all', 'active', 'completed', 'login'].some(function (record) {
     return record === to.params.filter;
   })) {
     next();

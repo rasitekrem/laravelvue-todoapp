@@ -15,7 +15,7 @@ import store from "./store";
 import router from './router';
 
 router.beforeEach((to, from, next) => {
-    if (['all', 'active', 'completed'].some(record => record === to.params.filter)) {
+    if (['all', 'active', 'completed','login'].some(record => record === to.params.filter)) {
       next()
     } else {
       next('/all')
