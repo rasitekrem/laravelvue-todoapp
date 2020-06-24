@@ -1969,6 +1969,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     updateFilter: 'todoList/updateFilter'
   })),
   created: function created() {
+    // axios ile atılacak işlemlerde default olarak tokenı ekliyoruz
     axios.defaults.headers.common["Authorization"] = "Bearer " + localStorage.getItem("todoapp_token");
     this.$store.dispatch('currentUser/getUser');
   }
@@ -2125,6 +2126,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2164,6 +2167,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
 //
 //
 //
@@ -2264,6 +2268,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     getTitle: 'todoList/getTitle'
   })), {}, {
     title: {
+      //store içerisindeki title bilgisini alıyoruz
+      //kayıt sonrası text fieldı temizlemek için böyle bir yöntem izlendi
       get: function get() {
         return this.getTitle;
       },

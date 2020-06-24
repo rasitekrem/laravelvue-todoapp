@@ -37,6 +37,8 @@ export default {
         getTitle: 'todoList/getTitle'
       }),
       title: {
+        //store içerisindeki title bilgisini alıyoruz
+        //kayıt sonrası text fieldı temizlemek için böyle bir yöntem izlendi
         get () {
           return this.getTitle;
         },

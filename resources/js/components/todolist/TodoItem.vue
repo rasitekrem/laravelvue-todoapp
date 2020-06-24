@@ -1,6 +1,7 @@
 <template>
     <tr>
-        <td>    
+        <td>   
+        <!-- Eğer düzenleme modunda ise checkbox gözükmez -->
         <v-checkbox v-if="!isEditable"
             v-model="task.completed"
             @change="updateTask(task)"
@@ -11,6 +12,7 @@
             <v-text-field regular v-model="task.title" v-else></v-text-field>
             
         </td>
+        <!-- Düzenleme moduna göre butonlar değiştirilir. -->
         <td v-if="!isEditable" > 
             <div class="float-right">
                 <v-btn icon color="blue lighten-2" @click="isEditable = !isEditable">

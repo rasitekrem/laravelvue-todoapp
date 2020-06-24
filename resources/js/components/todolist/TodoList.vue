@@ -15,6 +15,7 @@
         </v-alert>
       </template>
     </v-simple-table>
+    <!-- butonun işlevine göre rengi, içeriği belirlenir. -->
     <change-button :title="title('active')" :color="'primary'" v-if="filter == 'all' || filter == 'active'" @trigger-event="checkAll"/>
     <change-button :title="title('completed')" :color="'error'" v-if="filter == 'all' || filter == 'completed'" @trigger-event="destroyCompleted"/>
   </div>

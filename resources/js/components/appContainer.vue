@@ -55,6 +55,7 @@
       })
     },
     created() {
+        // axios ile atılacak işlemlerde default olarak tokenı ekliyoruz
         axios.defaults.headers.common["Authorization"] = "Bearer " + localStorage.getItem("todoapp_token");
         this.$store.dispatch('currentUser/getUser');
     },
