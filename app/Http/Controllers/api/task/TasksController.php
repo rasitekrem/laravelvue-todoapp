@@ -64,16 +64,14 @@ class TasksController extends Controller
 
         return response($task, 200);
     }
-
-    public function updateAll(Request $request)
+    /**
+     * @return \Illuminate\Http\Response
+     */
+    public function updateAll()
     {
-        $data = $request->validate([
-            'completed' => 'required|boolean',
-        ]);
+        $result = $this->taskRepository->updateAll();
 
-        $result = $this->taskRepository->updateAll($data);
-
-        return response()->json('Updated', 200);
+        return response($result, 200);
     }
 
     /**
@@ -92,11 +90,14 @@ class TasksController extends Controller
 
         return response()->json('Deleted task item', 200);
     }
-
+    
+    /**
+     * @return \Illuminate\Http\Response
+     */
     public function destroyCompleted()
     {
-        $response = $this->taskRepository->destroy($task);
+        $response = $this->taskRepository->destroyCompleted();
 
-        return response()->json($response, 200);
+        return response($response, 200);
     }
 }

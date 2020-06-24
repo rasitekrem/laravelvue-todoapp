@@ -14,5 +14,6 @@
 Auth::routes();
 
 Route::get('/', 'AppController@index')->name('app');
-Route::get('/todolist', 'AppController@index')->name('app');
-Route::get('/madelist', 'AppController@index')->name('app');
+Route::get('/all', 'AppController@index')->name('app');
+Route::get('/active', 'AppController@index')->name('app');
+Route::get('/completed', 'AppController@index')->name('app');

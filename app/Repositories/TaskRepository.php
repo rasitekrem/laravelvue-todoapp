@@ -30,9 +30,9 @@ class TaskRepository
         return $result;
     }
 
-    public function updateAll($data)
+    public function updateAll()
     {
-        Task::where('user_id', Auth::user()->id)->update($data);
+        Task::where('user_id', Auth::user()->id)->update(array('completed' => true));
 
         return response()->json('Updated', 200);
     }
@@ -45,7 +45,7 @@ class TaskRepository
         return $result;
     }
 
-    public function destroyCompleted(Request $request)
+    public function destroyCompleted()
     {
         $result = Task::where([
             ['user_id', Auth::user()->id],

@@ -28,7 +28,7 @@ Route::prefix('/user')->group( function() {
         Route::post('/tasks', 'api\task\TasksController@store');
         Route::patch('/tasks/{task}', 'api\task\TasksController@update');
         Route::delete('/tasks/{task}', 'api\task\TasksController@destroy');
-        Route::patch('/tasks/CheckAll', 'api\task\TasksController@updateAll');
-        Route::delete('/tasks/DeleteCompleted', 'api\task\TasksController@destroyCompleted');
+        Route::patch('/tasksCheckAll', 'api\task\TasksController@updateAll');
+        Route::delete('/tasksDestroyCompleted', 'api\task\TasksController@destroyCompleted');
     });
 });
